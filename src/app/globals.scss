@@ -1,50 +1,56 @@
-$color-background: #111;
-$color-text-default: #fff;
-$color-text-black: #000;
-$color-border-default: #bbb;
-
-$border-width-default: 1px; 
-$border-radius-default: 16px;
-$spacing-default: 8px;
+@use "variables.scss";
+@use "shared-styles.scss";
 
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $color-background;
-  color: $color-text-default;
+  background-color: variables.$color-background;
+  color: variables.$color-text-default;
   height: 100vh;
 }
 
-.default-border {
-  border-width: $border-width-default;
-  border-color: $color-border-default;
-  border-radius: $border-radius-default;
-  border-style: solid;
+.warning {
+  color: variables.$color-warning !important;
 }
 
-.welcome-box {
+.warning-border {
+  border-color: variables.$color-warning !important;
+}
+
+.warning-separator {
+  background-color: variables.$color-warning !important;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
   h1 {
     font-size: 2rem;
-    font-weight: 900;
+    font-weight: 600;
   }
+  background-color: variables.$color-background-secondary;
   max-width: fit-content;
-  padding: $spacing-default * 3;
+  padding: variables.$spacing-default * 3;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  // @extend .default-border;
+  gap: variables.$spacing-default * 3;
+  @extend .default-border;
 }
 
 .button {
   @extend .default-border;
   transition: all 1s ease-out;
-  color: $color-text-black;
-  border-radius: $spacing-default;
-  padding: $spacing-default * 4;
-  padding-block: $spacing-default;
+  color: variables.$color-text-black;
+  border-radius: variables.$spacing-default;
+  padding: variables.$spacing-default * 4;
+  padding-block: variables.$spacing-default;
   text-decoration: none;
   font-weight: 600;
   background-color: #fff;
@@ -53,10 +59,10 @@ body {
 .button:hover {
   @extend .default-border;
   transition: all 1s ease-out;
-  color: $color-text-black;
-  border-radius: $spacing-default;
-  padding: $spacing-default * 4;
-  padding-block: $spacing-default;
+  color: variables.$color-text-black;
+  border-radius: variables.$spacing-default;
+  padding: variables.$spacing-default * 4;
+  padding-block: variables.$spacing-default;
   text-decoration: none;
   font-weight: 600;
   background-color: #fff;

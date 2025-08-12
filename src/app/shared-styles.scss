@@ -1,0 +1,8 @@
+@use "variables.scss";
+
+.default-border {
+    border-width: variables.$border-width-default;
+    border-color: variables.$color-border-default;
+    border-radius: variables.$border-radius-default;
+    border-style: solid;
+}

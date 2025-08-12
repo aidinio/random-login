@@ -1,0 +1,10 @@
+@use "../../app/variables.scss";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-default * 2;
+    button {
+        cursor: pointer;
+    }
+}
