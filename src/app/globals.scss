@@ -1,0 +1,63 @@
+$color-background: #111;
+$color-text-default: #fff;
+$color-text-black: #000;
+$color-border-default: #bbb;
+
+$border-width-default: 1px; 
+$border-radius-default: 16px;
+$spacing-default: 8px;
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-background;
+  color: $color-text-default;
+  height: 100vh;
+}
+
+.default-border {
+  border-width: $border-width-default;
+  border-color: $color-border-default;
+  border-radius: $border-radius-default;
+  border-style: solid;
+}
+
+.welcome-box {
+  h1 {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+  max-width: fit-content;
+  padding: $spacing-default * 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  // @extend .default-border;
+}
+
+.button {
+  @extend .default-border;
+  transition: all 1s ease-out;
+  color: $color-text-black;
+  border-radius: $spacing-default;
+  padding: $spacing-default * 4;
+  padding-block: $spacing-default;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: #fff;
+}
+
+.button:hover {
+  @extend .default-border;
+  transition: all 1s ease-out;
+  color: $color-text-black;
+  border-radius: $spacing-default;
+  padding: $spacing-default * 4;
+  padding-block: $spacing-default;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: #fff;
+}
