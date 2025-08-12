@@ -1,12 +1,20 @@
+"use client"
+
 import Card from "@/components/Card";
+import queryClient from "@/query/queryClient";
+import StoreProvider from "@/store/Provider";
 import LoginForm from "@/ui/auth/LoginForm";
-import { PhoneIcon } from "@phosphor-icons/react/dist/ssr";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 export default function Page() {
   return (
-    <Card>
-      <h1>Auth</h1>
-      <LoginForm />
-    </Card>
+    <StoreProvider>
+      <QueryClientProvider client={queryClient}>
+        <Card>
+          <h1>Auth</h1>
+          <LoginForm />
+        </Card>
+      </QueryClientProvider>
+    </StoreProvider>
   );
 }

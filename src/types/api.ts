@@ -1,71 +1,75 @@
-export interface IUser {
-    gender:     string;
-    name:       Name;
-    location:   Location;
-    email:      string;
-    login:      Login;
-    dob:        Dob;
-    registered: Dob;
-    phone:      string;
-    cell:       string;
-    id:         ID;
-    picture:    Picture;
-    nat:        string;
-}
+import { z } from "zod"
 
-interface Dob {
-    date: Date;
-    age:  number;
-}
+const dobSchema = z.object({
+  date: z.date(),
+  age: z.number()
+})
 
-interface ID {
-    name:  string;
-    value: string;
-}
+const idSchema = z.object({
+  name: z.string(),
+  value: z.string()
+})
 
-interface Location {
-    street:      Street;
-    city:        string;
-    state:       string;
-    country:     string;
-    postcode:    number;
-    coordinates: Coordinates;
-    timezone:    Timezone;
-}
+const coordinatesSchema = z.object({
+  latitude: z.string(),
+  longitude: z.string()
+})
 
-interface Coordinates {
-    latitude:  string;
-    longitude: string;
-}
+const streetSchema = z.object({
+  number: z.number(),
+  name: z.string()
+})
 
-interface Street {
-    number: number;
-    name:   string;
-}
+const timezoneSchema = z.object({
+  offset: z.string(),
+  description: z.string()
+})
 
-interface Timezone {
-    offset:      string;
-    description: string;
-}
+const loginSchema = z.object({
+  uuid: z.string(),
+  username: z.string(),
+  password: z.string(),
+  salt: z.string(),
+  md5: z.string(),
+  sha1: z.string(),
+  sha256: z.string()
+})
 
-interface Login {
-    uuid:     string;
-    username: string;
-    password: string;
-    salt:     string;
-    md5:      string;
-    sha1:     string;
-    sha256:   string;
-}
+const nameSchema = z.object({
+  title: z.string(),
+  first: z.string(),
+  last: z.string()
+})
 
-interface Name {
-    title: string;
-    first: string;
-    last:  string;
-}
+const pictureSchema = z.object({
+  large: z.string(),
+  medium: z.string(),
+  thumbnail: z.string()
+})
 
-interface Picture {
-    large:     string;
-    medium:    string;
-    thumbnail: string;
-}
+const locationSchema = z.object({
+  street: streetSchema,
+  city: z.string(),
+  state: z.string(),
+  country: z.string(),
+  postcode: z.number(),
+  coordinates: coordinatesSchema,
+  timezone: timezoneSchema
+})
+
+export const userSchema = z.object({
+  gender: z.string(),
+  name: nameSchema,
+  location: locationSchema,
+  email: z.string(),
+  login: loginSchema,
+  dob: dobSchema,
+  registered: dobSchema,
+  phone: z.string(),
+  cell: z.string(),
+  id: idSchema,
+  picture: pictureSchema,
+  nat: z.string()
+})
+
+export type IUser = z.infer<typeof userSchema>

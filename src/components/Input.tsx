@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, RefObject, useEffect } from "react";
 import styles from "./input.module.scss";
 import { useRef } from "react";
 
@@ -8,22 +8,29 @@ export default function Input({
   children,
   name,
   error,
+  ref,
   ...props
 }: {
   children: ReactNode;
   name: string;
+  ref: (el: HTMLInputElement) => void;
   error: string | undefined;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    console.log(inputRef);
-  }, [inputRef]);
   return (
     <div className={styles.wrapper}>
-      <div className={`${styles.field} ${error && "warning-border warning"}`} onClick={() => inputRef.current?.focus()}>
+      <div
+        className={`${styles.field} ${error && "warning-border warning"}`}
+        onClick={() => {
+          inputRef.current?.focus;
+        }}
+      >
         {children}
         <div className={`separator ${error && "warning-separator"}`}></div>
-        <input ref={inputRef} type="text" name={name} {...props} />
+        <input type="text" name={name} {...props} ref={(element) => {
+          inputRef.current = element;
+          if (element) ref(element);
+        } } />
       </div>
       {error && <span className="warning">{error}</span>}
     </div>

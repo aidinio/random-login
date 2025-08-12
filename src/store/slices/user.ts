@@ -13,7 +13,7 @@ type TState =
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
+  initialState: localStorage?.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : {
     isLoggedIn: false,
     userData: null,
   } as TState,
