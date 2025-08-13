@@ -7,9 +7,9 @@ export const makeStore = () => {
     reducer: {
       user: userReducer,
     },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(localStorageMiddleware),
-  });
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(localStorageMiddleware),
+    });
 };
 
 export type AppStore = ReturnType<typeof makeStore>;

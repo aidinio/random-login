@@ -6,7 +6,7 @@ import styles from "./auth.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch, useAppSelector, useAppStore } from "@/store/hooks";
-import { login } from "@/store/slices/user";
+import { login, logout } from "@/store/slices/user";
 import { FormFields, formSchema } from "@/types/form";
 import { IUser } from "@/types/api";
 import { useEffect, useState } from "react";
@@ -15,11 +15,6 @@ import { redirect } from "next/navigation";
 import { selectIsLoggedIn } from "@/store/selectors";
 
 export default function LoginForm() {
-  const isLoggedIn = useAppSelector(selectIsLoggedIn);
-  if (isLoggedIn) redirect("/dashboard");
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
   const {
     register,
     handleSubmit,
@@ -27,12 +22,21 @@ export default function LoginForm() {
     isLoading,
     onSubmit,
   } = useLoginForm();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  useEffect(() => {
+    if (isLoggedIn) {
+      redirect("/dashboard");
+    }
+  },[isLoggedIn])
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <Input {...register("phone")} error={errors.phone?.message}>
         <PhoneIcon />
       </Input>
-      <button disabled={isSubmitting || isLoading} className="button">
+      <button
+        disabled={Boolean(errors.phone) || isSubmitting || isLoading}
+        className="button"
+      >
         Login
       </button>
     </form>
@@ -46,12 +50,12 @@ async function fetchData() {
   }
   return (await response.json()).results[0] as IUser;
 }
-
+ 
 function useLoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitted },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<FormFields>({ resolver: zodResolver(formSchema) });
   const dispatch = useAppDispatch();
   const [number, setNumber] = useState<string | null>(null);
@@ -62,7 +66,7 @@ function useLoginForm() {
       dispatch(login(data));
       return data;
     },
-    enabled: isSubmitted,
+    enabled: isSubmitSuccessful,
   });
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     setNumber(data.phone);
@@ -70,7 +74,7 @@ function useLoginForm() {
   return {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
     isLoading,
     onSubmit,
   };

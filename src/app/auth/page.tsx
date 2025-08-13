@@ -11,7 +11,7 @@ export default function Page() {
     <StoreProvider>
       <QueryClientProvider client={queryClient}>
         <Card>
-          <h1>Auth</h1>
+          <h1>Login</h1>
           <LoginForm />
         </Card>
       </QueryClientProvider>

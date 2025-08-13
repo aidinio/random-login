@@ -1,29 +1,29 @@
-import { z } from "zod"
+import { z } from "zod";
 
 const dobSchema = z.object({
   date: z.date(),
-  age: z.number()
-})
+  age: z.number(),
+});
 
 const idSchema = z.object({
   name: z.string(),
-  value: z.string()
-})
+  value: z.string(),
+});
 
 const coordinatesSchema = z.object({
   latitude: z.string(),
-  longitude: z.string()
-})
+  longitude: z.string(),
+});
 
 const streetSchema = z.object({
   number: z.number(),
-  name: z.string()
-})
+  name: z.string(),
+});
 
 const timezoneSchema = z.object({
   offset: z.string(),
-  description: z.string()
-})
+  description: z.string(),
+});
 
 const loginSchema = z.object({
   uuid: z.string(),
@@ -32,20 +32,20 @@ const loginSchema = z.object({
   salt: z.string(),
   md5: z.string(),
   sha1: z.string(),
-  sha256: z.string()
-})
+  sha256: z.string(),
+});
 
 const nameSchema = z.object({
   title: z.string(),
   first: z.string(),
-  last: z.string()
-})
+  last: z.string(),
+});
 
 const pictureSchema = z.object({
   large: z.string(),
   medium: z.string(),
-  thumbnail: z.string()
-})
+  thumbnail: z.string(),
+});
 
 const locationSchema = z.object({
   street: streetSchema,
@@ -54,8 +54,8 @@ const locationSchema = z.object({
   country: z.string(),
   postcode: z.number(),
   coordinates: coordinatesSchema,
-  timezone: timezoneSchema
-})
+  timezone: timezoneSchema,
+});
 
 export const userSchema = z.object({
   gender: z.string(),
@@ -69,7 +69,7 @@ export const userSchema = z.object({
   cell: z.string(),
   id: idSchema,
   picture: pictureSchema,
-  nat: z.string()
-})
+  nat: z.string(),
+});
 
-export type IUser = z.infer<typeof userSchema>
+export type IUser = z.infer<typeof userSchema>;

@@ -1,3 +1,12 @@
+"use client";
+
+import StoreProvider from "@/store/Provider";
+import Dashboard from "@/ui/dashboard/Dashboard";
+
 export default function Page() {
-    return <h1>Dashboard</h1>
+  return (
+    <StoreProvider>
+      <Dashboard />
+    </StoreProvider>
+  );
 }

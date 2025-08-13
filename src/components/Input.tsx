@@ -18,19 +18,24 @@ export default function Input({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
-    <div className={styles.wrapper}>
-      <div
-        className={`${styles.field} ${error && "warning-border warning"}`}
-        onClick={() => {
-          inputRef.current?.focus;
-        }}
-      >
+    <div
+      className={styles.wrapper}
+      onClick={() => {
+        inputRef.current?.focus();
+      }}
+    >
+      <div className={`${styles.field} ${error && "warning-border warning"}`}>
         {children}
         <div className={`separator ${error && "warning-separator"}`}></div>
-        <input type="text" name={name} {...props} ref={(element) => {
-          inputRef.current = element;
-          if (element) ref(element);
-        } } />
+        <input
+          type="text"
+          name={name}
+          {...props}
+          ref={(element) => {
+            inputRef.current = element;
+            if (element) ref(element);
+          }}
+        />
       </div>
       {error && <span className="warning">{error}</span>}
     </div>

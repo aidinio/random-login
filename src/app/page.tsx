@@ -1,5 +1,3 @@
-"use client"
-
 import StoreProvider from "@/store/Provider";
 import WelcomeCard from "@/ui/WelcomeCard";
 

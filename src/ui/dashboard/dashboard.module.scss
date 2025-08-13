@@ -1,0 +1,37 @@
+@use "../../app/variables.scss";
+@use "../../app/shared-styles.scss";
+
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-default;
+    align-items: center;
+    justify-content: center;
+}
+.profile-picture {
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    width: 75px;
+}
+.profile-picture-image {
+    width: 100%;
+    height: 100%;
+}
+
+.data {
+    background-color: variables.$color-background;
+    color: variables.$color-text-default;
+    flex-grow: 1;
+    max-width: 80vw;
+    overflow-x: hidden;
+    height: 100%;
+    text-overflow: clip;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: variables.$spacing-default;
+    @extend .default-border;
+}
