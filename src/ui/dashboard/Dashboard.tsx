@@ -37,13 +37,19 @@ export default function Dashboard() {
   const rawData = useAppSelector((state) => state.user);
   return (
     <div className={styles["dashboard-card"]}>
-      <div className={styles["profile-picture"]}>
-        <img src={picture} alt="" className={styles["profile-picture-image"]} />
+      <div className="card">
+        <div className={`${styles["profile-picture"]}`}>
+          <img
+            src={picture}
+            alt=""
+            className={styles["profile-picture-image"]}
+          />
+        </div>
+        <h1>Hi, {name}!</h1>
+        <button className="button" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
-      <h1>Hi, {name}!</h1>
-      <button className="button" onClick={handleLogout}>
-        Logout
-      </button>
       <div>
         <h3>Your raw data:</h3>
         <pre className={styles["data"]}>{JSON.stringify(rawData)}</pre>
